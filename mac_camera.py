@@ -6,9 +6,8 @@ vc = cv2.VideoCapture(0)
 
 rval, frame = vc.read()
 
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (1280,720))
-#out = cv2.VideoWriter('video.avi',-1,1,(width,height))
+fourcc = cv2.VideoWriter_fourcc(*'jpeg')
+out = cv2.VideoWriter('output.mov',fourcc, 20.0, (1280,720))
 
 while True:
 
