@@ -10,12 +10,20 @@ ap.add_argument("-f", "--file", required = True,
 args = vars(ap.parse_args())
 mov_file = args["file"]
 
-up_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/UpArrow.tif')
+#up_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/UpArrow.tif')
 all_arrows = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/All Arrows.tif')
+
+up_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/UpArrow.tif')
+left_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/Left_Arrow.tif')
+right_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/Right Arrow.tif')
+#all_arrows = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/All Arrows.tif')
+
+#activated_arrow = left_arrow
+
 scale = 0.125
 resized_image = cv2.resize(up_arrow,None,fx=scale, fy=scale, interpolation = cv2.INTER_CUBIC)
 img2gray = cv2.cvtColor(resized_image,cv2.COLOR_BGR2GRAY)
-ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
+ret, mask = cv2.threshold(img2gray, 240, 255, cv2.THRESH_BINARY)
 mask_inv = cv2.bitwise_not(mask)
 thing1 = cv2.bitwise_and(resized_image,resized_image,mask = mask_inv)
 rows,cols,channels = resized_image.shape
