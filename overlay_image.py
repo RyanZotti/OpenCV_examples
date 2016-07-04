@@ -10,13 +10,10 @@ ap.add_argument("-f", "--file", required = True,
 args = vars(ap.parse_args())
 mov_file = args["file"]
 
-#up_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/UpArrow.tif')
 all_arrows = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/All Arrows.tif')
-
 up_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/UpArrow.tif')
 left_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/Left_Arrow.tif')
 right_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/Right Arrow.tif')
-#all_arrows = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/All Arrows.tif')
 
 #activated_arrow = left_arrow
 
@@ -27,11 +24,6 @@ ret, mask = cv2.threshold(img2gray, 240, 255, cv2.THRESH_BINARY)
 mask_inv = cv2.bitwise_not(mask)
 thing1 = cv2.bitwise_and(resized_image,resized_image,mask = mask_inv)
 rows,cols,channels = resized_image.shape
-
-
-#img2gray = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-#ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
-#mask_inv = cv2.bitwise_not(mask)
 
 rows,cols,channels = resized_image.shape
 roi = resized_image[0:rows, 0:cols ]
@@ -45,9 +37,6 @@ while(cap.isOpened()):
     img2_fg = cv2.bitwise_and(resized_image,resized_image,mask = mask_inv)
     dst = cv2.add(img1_bg,img2_fg)
     frame[0:rows, 0:cols ] = dst
-    #frame[0:resized_image.shape[0],0:resized_image.shape[1]] = resized_image
-    
-
     cv2.imshow('frame',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
