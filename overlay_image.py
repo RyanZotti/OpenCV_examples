@@ -14,10 +14,17 @@ all_arrows = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/All Arr
 up_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/UpArrow.tif')
 left_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/LeftArrow.tif')
 right_arrow = cv2.imread('/Users/ryanzotti/Dropbox/PhotoshopMiscellaneous/Right Arrow.tif')
+
+# The original image is huge, so I need to rescale it
 scale = 0.125
 resized_image = cv2.resize(left_arrow,None,fx=scale, fy=scale, interpolation = cv2.INTER_CUBIC)
+
+# Thresholding requires grayscale only, so that threshold only needs to happen in one dimension
 img2gray = cv2.cvtColor(resized_image,cv2.COLOR_BGR2GRAY)
+
+# Create mask where anything greater than 240 bright is made super white (255) / selected
 ret, mask = cv2.threshold(img2gray, 240, 255, cv2.THRESH_BINARY)
+
 mask_inv = cv2.bitwise_not(mask)
 rows,cols,channels = resized_image.shape
 cap = cv2.VideoCapture(mov_file)
