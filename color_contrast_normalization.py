@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+# Got the code from here: http://stackoverflow.com/questions/24341114/simple-illumination-correction-in-images-opencv-c
 img = cv2.imread('./images/ski_lift.png')
 
 img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
