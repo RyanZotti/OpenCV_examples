@@ -6,6 +6,10 @@ import cv2
 
 img = cv2.imread('./images/ski_lift.png')
 
+'''
+According to Wikipedia: https://en.wikipedia.org/wiki/YUV
+"The Y′UV model defines a color space in terms of one luma (Y′)" Where luma represents brightness
+'''
 img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
 
 # equalize the histogram of the Y channel
